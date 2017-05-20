@@ -83,17 +83,6 @@ contract("HumanStandardToken", function(accounts) {
         }).catch(done);
     });
 
-    it("transfers: should fail when trying to transfer zero.", function(done) {
-        var ctr;
-        HumanStandardToken.new(10000, 'Simon Bucks', 1, 'SBX', {from: accounts[0]}).then(function(result) {
-            ctr = result;
-            return ctr.transfer.call(accounts[1], 0, {from: accounts[0]});
-        }).then(function (result) {
-            assert.isFalse(result);
-            done();
-        }).catch(done);
-    });
-
     //NOTE: testing uint256 wrapping is impossible in this standard token since you can't supply > 2^256 -1.
 
     //todo: transfer max amounts.
